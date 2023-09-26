@@ -1,16 +1,32 @@
-import pandas
 import pandas as pd
 
+
+
+# Tong so sv tham gia mon hoc
+def total_students_participated(data):
+    return data['So_SV'].sum()
+
+# tong sv dat dc A, B, C, ...
+def total_students_achieved_grade(data,grade):
+    return data[data[f'type {grade}'] > 0]['So_SV'].sum()
+
+# Hàm tính tổng số SV đạt điểm >=D
+def total_students_achieved_D_and_above(data):
+    return data[data['type D'] > 0]['So_SV'].sum()
+
+# Hàm tìm lớp có số SV đạt >=D nhiều nhất
+def class_with_most_students_achieved_D(data):
+    max_students = data[data['type D'] == df['type D'].max()]
+    return max_students['Ma_lop'].tolist()
+
+# Hàm tìm lớp có điểm A, B, C... nhiều nhất
+def class_with_most_students_achieved_grade(data,grade):
+    max_students = data[data[f'type {grade}'] == df[f'type {grade}'].max()]
+    return max_students['Ma_lop'].tolist()
+
+
+
 #names=['STT','Ma_lop','So_SV',"A+","A","B+","B","C+","C","D+","D","F","L1","L2","TX1","TX2","CUOI KI"]
-data=pandas.read_csv('diemPython.csv')
-#print(data)
-def kiem_tra_diem(diem):
-    return diem >= 4
-def TongsoSV(data):
-    SV_total = data.groupby('Ma_lop')[ 'So_SV' ].sum().reset_index()
+data=pd.read_csv('diemPython.csv')
 
-    #SV_join=data[data['So_SV']>0]
-    #SV_total=len(SV_join)
-    return SV_total
-
-print(TongsoSV(data))
+print(total_students_participated(data))
