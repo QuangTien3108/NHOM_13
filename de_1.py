@@ -63,5 +63,4 @@ label3 = Label(w)
 label4 = Label(w)
 label5 = Label(w)
                   
-
-
+w.mainloop()
