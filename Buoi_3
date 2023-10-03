@@ -1,1 +1,24 @@
+//tạo một chương trình Python như sau để vẽ đồ thị hàm số:
+ip install numpy matplotlib
+import numpy as np
+import matplotlib.pyplot as plt
 
+def plot_function(expression, x_range=(-10, 10), num_points=1000):
+    x_values = np.linspace(x_range[0], x_range[1], num_points)
+    y_values = eval(expression, globals(), {'x': x_values})
+    
+    plt.figure(figsize=(8, 6))
+    plt.plot(x_values, y_values, label=expression)
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('Đồ thị hàm số')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+if __name__ == "__main__":
+    expression = input("Nhập biểu thức hàm số (sử dụng biến 'x'): ")
+    try:
+        plot_function(expression)
+    except Exception as e:
+        print("Lỗi:", str(e))
