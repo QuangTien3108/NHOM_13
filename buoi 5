@@ -1,0 +1,27 @@
+
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+//Đọc dữ liệu từ tập tin CSV vào một DataFrame
+data = pd.read_csv("student_performance.svc")
+//Xác định các biến độc lập (features) và biến phụ thuộc (target) trong tập dữ liệu.
+X = data[['feature1', 'feature2', ...]]  # Thay thế 'feature1', 'feature2' bằng tên các features thực tế.
+y = data['target_column']  # Thay 'target_column' bằng tên cột hiệu quả học tập.
+//Chia dữ liệu thành hai phần: bộ train và bộ test để đánh giá hiệu suất mô hình.
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+//Sử dụng thư viện scikit-learn để xây dựng mô hình hồi quy tuyến tính.
+python
+model = LinearRegression()
+model.fit(X_train, y_train)
+//Sử dụng mô hình đã xây dựng để dự đoán trên bộ test và đánh giá hiệu suất.
+y_pred = model.predict(X_test)
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+print("Mean Squared Error:", mse)
+print("R-squared:", r2)
+// sử dụng mô hình đã được đào tạo để dự đoán hiệu quả học tập cho học sinh mới bằng cách cung cấp các giá trị features tương ứng cho học sinh đó.
+new_student_features = np.array([[value1, value2, ...]])  # Thay thế value1, value2 bằng các giá trị thực tế.
+predicted_score = model.predict(new_student_features)
+print("Predicted Score:", predicted_score)
