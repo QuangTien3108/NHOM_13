@@ -1,0 +1,41 @@
+import numpy as np
+# Định nghĩa hàm số f(x) mà bạn muốn tính đạo hàm
+def f(x):
+    return x**2 + 2*x + 1
+
+# Định nghĩa hàm tính đạo hàm bằng phép sai phân
+def derivative(f, x, epsilon=1e-6):
+    return (f(x + epsilon) - f(x - epsilon)) / (2 * epsilon)
+
+# Chọn một giá trị x0 để tính đạo hàm tại đó
+x0 = 2.0
+
+# Tính đạo hàm của hàm số tại x0
+derivative_value = derivative(f, x0)
+
+# Hiển thị kết quả
+print(f"Đạo hàm của hàm số tại x = {x0} là: {derivative_value}")
+//chúng ta đã sử dụng NumPy để tính đạo hàm của một hàm số đơn giản f(x) = x^2 + 2x + 1 tại một giá trị x0. Hàm derivative tính đạo hàm bằng cách sử dụng phép sai phân trung tâm//tạo một chương trình Python như sau để vẽ đồ thị hàm số:
+ip install numpy matplotlib
+import numpy as np
+import matplotlib.pyplot as plt
+
+def plot_function(expression, x_range=(-10, 10), num_points=1000):
+    x_values = np.linspace(x_range[0], x_range[1], num_points)
+    y_values = eval(expression, globals(), {'x': x_values})
+    
+    plt.figure(figsize=(8, 6))
+    plt.plot(x_values, y_values, label=expression)
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('Đồ thị hàm số')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+if __name__ == "__main__":
+    expression = input("Nhập biểu thức hàm số (sử dụng biến 'x'): ")
+    try:
+        plot_function(expression)
+    except Exception as e:
+        print("Lỗi:", str(e))
